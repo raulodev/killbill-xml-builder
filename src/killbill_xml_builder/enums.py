@@ -66,3 +66,25 @@ class PhaseType(enum.Enum):
 
     def __str__(self):
         return self.value
+
+
+class BillingPolicy(enum.Enum):
+    """Billing Policy"""
+
+    START_OF_TERM = "START_OF_TERM"
+    END_OF_TERM = "END_OF_TERM"
+    IMMEDIATE = "IMMEDIATE"
+    ILLEGAL = "ILLEGAL"
+
+    def __str__(self):
+        return self.value
+
+
+class EntitlementPolicy(enum.Enum):
+    """Entitlement Policy"""
+
+    IMMEDIATE = "IMMEDIATE"
+    END_OF_TERM = "END_OF_TERM"
+
+    def __str__(self):
+        return self.value

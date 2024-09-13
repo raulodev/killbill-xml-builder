@@ -19,12 +19,12 @@ class Price(Base):
 
     def to_xml(self):
 
-        price = ET.Element("price")
+        root = ET.Element("price")
 
-        currency = ET.SubElement(price, "currency")
+        currency = ET.SubElement(root, "currency")
         currency.text = self.currency
 
-        value = ET.SubElement(price, "value")
+        value = ET.SubElement(root, "value")
         value.text = str(self.value)
 
-        self.element = price
+        self.element = root

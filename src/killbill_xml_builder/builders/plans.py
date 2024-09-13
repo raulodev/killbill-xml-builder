@@ -24,17 +24,17 @@ class Plan(Base):
 
     def to_xml(self):
 
-        plan_element = ET.Element("plan")
-        plan_element.set("name", self.name)
+        root = ET.Element("plan")
+        root.set("name", self.name)
 
-        product_element = ET.SubElement(plan_element, "product")
+        product_element = ET.SubElement(root, "product")
         product_element.text = self.product.name
 
-        initial_phases_element = ET.SubElement(plan_element, "initialPhases")
+        initial_phases_element = ET.SubElement(root, "initialPhases")
         for phase in self.initial_phases:
             initial_phases_element.append(phase.element)
 
-        final_phases_element = ET.SubElement(plan_element, "finalPhase")
+        final_phases_element = ET.SubElement(root, "finalPhase")
         final_phases_element.set("type", str(self.final_phase.type))
 
         final_phases_element.append(self.final_phase.duration.element)
@@ -45,4 +45,4 @@ class Plan(Base):
         if self.final_phase.recurring_price:
             final_phases_element.append(self.final_phase.recurring_price.element)
 
-        self.element = plan_element
+        self.element = root

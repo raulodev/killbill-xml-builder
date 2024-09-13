@@ -5,14 +5,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "killbill-xml-builder"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Raul Cobiellas", email="raulodev@gmail.com" },
 ]
 description = "killbill xml builder"
 readme = "README.md"
 requires-python = ">=3.8"
-keywords = ["killbill", "kill", "bill"]
+keywords = ["killbill", "kill", "bill" , "xml"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",

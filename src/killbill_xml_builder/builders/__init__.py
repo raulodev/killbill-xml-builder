@@ -3,6 +3,11 @@ from killbill_xml_builder.builders.products import Product
 from killbill_xml_builder.builders.prices import Price
 from killbill_xml_builder.builders.plans import Plan
 from killbill_xml_builder.builders.catalogs import Catalog
+from killbill_xml_builder.builders.rules import (
+    Rules,
+    ChangePolicyCase,
+    CancelPolicyCase,
+)
 from killbill_xml_builder.builders.phases import (
     Phase,
     Duration,
@@ -20,4 +25,7 @@ __all__ = [
     "Price",
     "Plan",
     "Catalog",
+    "ChangePolicyCase",
+    "CancelPolicyCase",
+    "Rules",
 ]

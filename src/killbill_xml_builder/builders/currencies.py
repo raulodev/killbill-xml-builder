@@ -33,9 +33,9 @@ class Currencies(Base):
 
     def to_xml(self):
 
-        currencies_element = ET.Element("currencies")
+        root = ET.Element("currencies")
 
         for currency in self.currencies:
-            currencies_element.append(Currency(currency).element)
+            root.append(Currency(currency).element)
 
-        self.element = currencies_element
+        self.element = root

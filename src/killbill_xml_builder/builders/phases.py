@@ -15,17 +15,17 @@ class Duration(Base):
 
     def to_xml(self):
 
-        duration_element = ET.Element("duration")
+        root = ET.Element("duration")
 
-        unit_element = ET.SubElement(duration_element, "unit")
+        unit_element = ET.SubElement(root, "unit")
         unit_element.text = str(self.time_unit)
 
         if self.time_unit != TimeUnit.UNLIMITED:
 
-            number_element = ET.SubElement(duration_element, "number")
+            number_element = ET.SubElement(root, "number")
             number_element.text = self.length
 
-        self.element = duration_element
+        self.element = root
 
 
 class RecurringPrice(Base):
@@ -37,16 +37,16 @@ class RecurringPrice(Base):
 
     def to_xml(self):
 
-        recurring_element = ET.Element("recurring")
+        root = ET.Element("recurring")
 
-        billing_period_element = ET.SubElement(recurring_element, "billingPeriod")
+        billing_period_element = ET.SubElement(root, "billingPeriod")
         billing_period_element.text = str(self.billing_period)
 
-        recurring_price_element = ET.SubElement(recurring_element, "recurringPrice")
+        recurring_price_element = ET.SubElement(root, "recurringPrice")
         for price in self.prices:
             recurring_price_element.append(price.element)
 
-        self.element = recurring_element
+        self.element = root
 
 
 class FixedPrice(Base):
@@ -57,13 +57,13 @@ class FixedPrice(Base):
 
     def to_xml(self):
 
-        fixed_element = ET.Element("fixed")
+        root = ET.Element("fixed")
 
-        fixed_price_element = ET.SubElement(fixed_element, "fixedPrice")
+        fixed_price_element = ET.SubElement(root, "fixedPrice")
         for price in self.prices:
             fixed_price_element.append(price.element)
 
-        self.element = fixed_element
+        self.element = root
 
 
 class Phase(Base):
@@ -84,15 +84,15 @@ class Phase(Base):
 
     def to_xml(self):
 
-        phase_element = ET.Element("phase")
-        phase_element.set("type", str(self.type))
+        root = ET.Element("phase")
+        root.set("type", str(self.type))
 
-        phase_element.append(self.duration.element)
+        root.append(self.duration.element)
 
         if self.fixed_price:
-            phase_element.append(self.fixed_price.element)
+            root.append(self.fixed_price.element)
 
         if self.recurring_price:
-            phase_element.append(self.recurring_price.element)
+            root.append(self.recurring_price.element)
 
-        self.element = phase_element
+        self.element = root

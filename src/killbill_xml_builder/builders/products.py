@@ -23,22 +23,22 @@ class Product(Base):
 
     def to_xml(self):
 
-        product_element = ET.Element("product")
-        product_element.set("name", self.name)
+        root = ET.Element("product")
+        root.set("name", self.name)
 
-        category_element = ET.SubElement(product_element, "category")
+        category_element = ET.SubElement(root, "category")
         category_element.text = str(self.category)
 
         if self.included:
-            included_element = ET.SubElement(product_element, "included")
+            included_element = ET.SubElement(root, "included")
             for ie in self.included:
                 addon_product = ET.SubElement(included_element, "addonProduct")
                 addon_product.text = ie.name
 
         if self.available:
-            available_element = ET.SubElement(product_element, "available")
+            available_element = ET.SubElement(root, "available")
             for ae in self.available:
                 addon_product = ET.SubElement(available_element, "addonProduct")
                 addon_product.text = ae.name
 
-        self.element = product_element
+        self.element = root
