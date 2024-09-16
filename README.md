@@ -209,6 +209,12 @@ Get xml content
 print(catalog)
 ```
 
+Save catalog as file
+
+```python
+catalog.write()
+```
+
 ### TODO
 
 #### Plans
