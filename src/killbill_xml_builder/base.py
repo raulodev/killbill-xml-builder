@@ -14,3 +14,9 @@ class Base:
 
     def __str__(self):
         return ET.tostring(self.element, encoding="unicode")
+
+
+    def write(self, filename: str = "element.xml"):
+        """Save as file"""
+        tree = ET.ElementTree(self.element)
+        tree.write(filename)

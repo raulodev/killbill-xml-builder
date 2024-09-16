@@ -74,3 +74,6 @@ class Catalog(Base):
             plan_element.text = plan.name
 
         self.element = root
+
+    def write(self, filename: str = "catalog.xml"):
+        return super().write(filename)
