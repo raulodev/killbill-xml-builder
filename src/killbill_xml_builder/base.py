@@ -10,11 +10,9 @@ class Base:
     @abc.abstractmethod
     def to_xml(self):
         """Create the XML representation of the object"""
-        pass
 
     def __str__(self):
         return ET.tostring(self.element, encoding="unicode")
-
 
     def write(self, filename: str = "element.xml"):
         """Save as file"""
