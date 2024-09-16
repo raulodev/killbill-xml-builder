@@ -227,7 +227,3 @@ catalog.write()
 - createAlignment
 - changeAlignment
 - priceList
-
-```
-
-```
