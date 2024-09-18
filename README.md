@@ -223,7 +223,4 @@ catalog.write()
 
 #### Rules
 
-- billingAlignment
-- createAlignment
-- changeAlignment
 - priceList

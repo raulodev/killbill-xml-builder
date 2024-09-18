@@ -7,6 +7,9 @@ from killbill_xml_builder.builders.rules import (
     Rules,
     ChangePolicyCase,
     CancelPolicyCase,
+    BillingAlignmentCase,
+    CreateAlignmentCase,
+    ChangeAlignmentCase,
 )
 from killbill_xml_builder.builders.phases import (
     Phase,
@@ -27,5 +30,8 @@ __all__ = [
     "Catalog",
     "ChangePolicyCase",
     "CancelPolicyCase",
+    "BillingAlignmentCase",
+    "CreateAlignmentCase",
+    "ChangeAlignmentCase",
     "Rules",
 ]

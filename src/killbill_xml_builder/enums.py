@@ -88,3 +88,36 @@ class EntitlementPolicy(enum.Enum):
 
     def __str__(self):
         return self.value
+
+
+class BillingAlignmentPolicy(enum.Enum):
+    """Billing Alignment Policy"""
+
+    ACCOUNT = "ACCOUNT"
+    SUBSCRIPTION = "SUBSCRIPTION"
+    BUNDLE = "BUNDLE"
+
+    def __str__(self):
+        return self.value
+
+
+class CreateAlignmentPolicy(enum.Enum):
+    """Create Alignment Policy"""
+
+    START_OF_BUNDLE = "START_OF_BUNDLE"
+    START_OF_SUBSCRIPTION = "START_OF_SUBSCRIPTION"
+
+    def __str__(self):
+        return self.value
+
+
+class ChangeAlignmentPolicy(enum.Enum):
+    """Change Alignment Policy"""
+
+    START_OF_BUNDLE = "START_OF_BUNDLE"
+    START_OF_SUBSCRIPTION = "START_OF_SUBSCRIPTION"
+    CHANGE_OF_PLAN = "CHANGE_OF_PLAN"
+    CHANGE_OF_PRICELIST = "CHANGE_OF_PRICELIST"
+
+    def __str__(self):
+        return self.value
