@@ -10,6 +10,7 @@ from killbill_xml_builder.builders.rules import (
     BillingAlignmentCase,
     CreateAlignmentCase,
     ChangeAlignmentCase,
+    PriceListCase,
 )
 from killbill_xml_builder.builders.phases import (
     Phase,
@@ -33,5 +34,6 @@ __all__ = [
     "BillingAlignmentCase",
     "CreateAlignmentCase",
     "ChangeAlignmentCase",
+    "PriceListCase",
     "Rules",
 ]

@@ -220,7 +220,3 @@ catalog.write()
 #### Plans
 
 - Usage
-
-#### Rules
-
-- priceList

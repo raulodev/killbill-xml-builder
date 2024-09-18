@@ -368,6 +368,44 @@ class ChangeAlignmentCase(ChangeContext):
         self.element = root
 
 
+class PriceListCase(ChangeContext):
+    """Create the XML representation of the price list case"""
+
+    def __init__(
+        self,
+        phase_type: PhaseType = None,
+        from_product: Product = None,
+        from_product_category: ProductCategory = None,
+        from_billing_period: BillingPeriod = None,
+        from_price_list: str = None,
+        to_product: Product = None,
+        to_product_category: ProductCategory = None,
+        to_billing_period: BillingPeriod = None,
+        to_price_list: str = None,
+    ):
+        super().__init__(
+            phase_type,
+            from_product,
+            from_product_category,
+            from_billing_period,
+            from_price_list,
+            to_product,
+            to_product_category,
+            to_billing_period,
+            to_price_list,
+        )
+
+    def to_xml(self):
+
+        root = ET.Element("priceListCase")
+
+        elements = super().to_xml()
+        for element in elements:
+            root.append(element)
+
+        self.element = root
+
+
 class Rules(Base):
     """Create the XML representation of the rule"""
 
@@ -378,6 +416,7 @@ class Rules(Base):
         billing_alignment_cases: List[BillingAlignmentCase] = None,
         create_alignment_cases: List[CreateAlignmentCase] = None,
         change_alignment_cases: List[ChangeAlignmentCase] = None,
+        price_list_cases: List[PriceListCase] = None,
     ) -> None:
 
         self.change_policy_cases = change_policy_cases
@@ -385,6 +424,7 @@ class Rules(Base):
         self.billing_alignment_cases = billing_alignment_cases
         self.create_alignment_cases = create_alignment_cases
         self.change_alignment_cases = change_alignment_cases
+        self.price_list_cases = price_list_cases
         self.to_xml()
 
     def to_xml(self):
@@ -414,4 +454,9 @@ class Rules(Base):
             for cac in self.change_alignment_cases:
                 change_alignment_element.append(cac.element)
 
+        if self.price_list_cases :
+            price_list_element = ET.SubElement(root, "priceList")
+            for pl in self.price_list_cases:
+                price_list_element.append(pl.element)
+                
         self.element = root
