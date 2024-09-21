@@ -9,6 +9,7 @@ class Product(Base):
     def __init__(
         self,
         name: str,
+        pretty_name: str = None,
         category: ProductCategory = ProductCategory.BASE,
         available: list = None,
         included: List = None,
@@ -16,6 +17,7 @@ class Product(Base):
         """Create the XML representation of the product"""
 
         self.name = name
+        self.pretty_name = pretty_name
         self.category = category
         self.available = available
         self.included = included
@@ -25,6 +27,9 @@ class Product(Base):
 
         root = ET.Element("product")
         root.set("name", self.name)
+
+        if self.pretty_name:
+            root.set("prettyName", self.pretty_name)
 
         category_element = ET.SubElement(root, "category")
         category_element.text = str(self.category)

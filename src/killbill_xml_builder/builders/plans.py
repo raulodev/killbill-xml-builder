@@ -13,6 +13,7 @@ class Plan(Base):
         product: Product,
         initial_phases: List[Phase],
         final_phase: Phase,
+        pretty_name: str = None,
     ) -> None:
         """Create the XML representation of the plan"""
 
@@ -20,12 +21,16 @@ class Plan(Base):
         self.product = product
         self.initial_phases = initial_phases
         self.final_phase = final_phase
+        self.pretty_name = pretty_name
         self.to_xml()
 
     def to_xml(self):
 
         root = ET.Element("plan")
         root.set("name", self.name)
+
+        if self.pretty_name:
+            root.set("prettyName", self.pretty_name)
 
         product_element = ET.SubElement(root, "product")
         product_element.text = self.product.name
