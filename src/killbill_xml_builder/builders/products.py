@@ -9,10 +9,10 @@ class Product(Base):
     def __init__(
         self,
         name: str,
-        pretty_name: str = None,
         category: ProductCategory = ProductCategory.BASE,
         available: list = None,
         included: List = None,
+        pretty_name: str = None,
     ) -> None:
         """Create the XML representation of the product"""
 
@@ -38,12 +38,12 @@ class Product(Base):
             included_element = ET.SubElement(root, "included")
             for ie in self.included:
                 addon_product = ET.SubElement(included_element, "addonProduct")
-                addon_product.text = ie.name
+                addon_product.text = ie if isinstance(ie, str) else ie.name
 
         if self.available:
             available_element = ET.SubElement(root, "available")
             for ae in self.available:
                 addon_product = ET.SubElement(available_element, "addonProduct")
-                addon_product.text = ae.name
+                addon_product.text = ae if isinstance(ae, str) else ae.name
 
         self.element = root
