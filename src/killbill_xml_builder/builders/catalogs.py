@@ -7,6 +7,7 @@ from killbill_xml_builder.builders.currencies import Currencies
 from killbill_xml_builder.builders.products import Product
 from killbill_xml_builder.builders.plans import Plan
 from killbill_xml_builder.builders.rules import Rules
+from killbill_xml_builder.utils import get_effective_date
 
 
 class Catalog(Base):
@@ -24,9 +25,7 @@ class Catalog(Base):
         """Create the XML representation of the catalog"""
 
         if effective_date is None:
-            self.effective_date = datetime.datetime.now(datetime.timezone.utc).strftime(
-                "%Y-%m-%dT%H:%M:%S+00:00"
-            )
+            self.effective_date = get_effective_date()
         else:
             self.effective_date = effective_date
 
