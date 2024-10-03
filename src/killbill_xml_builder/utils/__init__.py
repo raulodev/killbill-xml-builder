@@ -47,8 +47,9 @@ def update_price(catalog: str, plans: dict) -> str:
     >>> plans = [{"name": "plan-1", "price": 200}]
     """
 
-    tree = ET.ElementTree(ET.fromstring(catalog))
-    root = tree.getroot()
+    root = ET.fromstring(catalog)
+    effective_date_element = root.find("effectiveDate")
+    effective_date_element.text = get_effective_date()
 
     for plan in plans:
         for plan_element in root.findall(".//plan"):
