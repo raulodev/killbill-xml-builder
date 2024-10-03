@@ -10,7 +10,7 @@ def get_effective_date():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
 
-def add_product(catalog: str, product: Product):
+def add_product(catalog: str, product: Product) -> str:
     """Add product to catalog"""
 
     root = ET.fromstring(catalog)
@@ -23,7 +23,7 @@ def add_product(catalog: str, product: Product):
     return ET.tostring(root, encoding="unicode")
 
 
-def add_plan(catalog: str, plan: Plan):
+def add_plan(catalog: str, plan: Plan) -> str:
     """Add plan to catalog"""
 
     root = ET.fromstring(catalog)
@@ -36,5 +36,26 @@ def add_plan(catalog: str, plan: Plan):
     price_list_element = root.find("priceLists").find("defaultPriceList").find("plans")
     plan_element = ET.SubElement(price_list_element, "plan")
     plan_element.text = plan.name
+
+    return ET.tostring(root, encoding="unicode")
+
+
+def update_price(catalog: str, plans: dict) -> str:
+    """Update plan price in catalog
+
+    Example:
+    >>> plans = [{"name": "plan-1", "price": 200}]
+    """
+
+    tree = ET.ElementTree(ET.fromstring(catalog))
+    root = tree.getroot()
+
+    for plan in plans:
+        for plan_element in root.findall(".//plan"):
+            if plan_element.attrib.get("name") == plan.get("name"):
+
+                price_element = plan_element.find(".//recurringPrice/price/value")
+                if price_element is not None:
+                    price_element.text = str(plan.get("price"))
 
     return ET.tostring(root, encoding="unicode")
