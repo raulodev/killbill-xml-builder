@@ -7,7 +7,7 @@ from killbill_xml_builder.builders.plans import Plan
 def get_effective_date():
     """Return the current date and time in UTC"""
 
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f+00:00")
 
 
 def add_product(catalog: str, product: Product) -> str:
