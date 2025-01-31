@@ -14,6 +14,7 @@ class Plan(Base):
         initial_phases: List[Phase],
         final_phase: Phase,
         pretty_name: str = None,
+        effective_date_for_existing_subscriptions=None,
     ) -> None:
         """Create the XML representation of the plan"""
 
@@ -22,6 +23,9 @@ class Plan(Base):
         self.initial_phases = initial_phases
         self.final_phase = final_phase
         self.pretty_name = pretty_name
+        self.effective_date_for_existing_subscriptions = (
+            effective_date_for_existing_subscriptions
+        )
         self.to_xml()
 
     def to_xml(self):
@@ -31,6 +35,15 @@ class Plan(Base):
 
         if self.pretty_name:
             root.set("prettyName", self.pretty_name)
+
+        if self.effective_date_for_existing_subscriptions:
+
+            efective_date_for_existing_subscriptions_element = ET.SubElement(
+                root, "effectiveDateForExistingSubscriptions"
+            )
+            efective_date_for_existing_subscriptions_element.text = (
+                self.effective_date_for_existing_subscriptions
+            )
 
         product_element = ET.SubElement(root, "product")
         product_element.text = self.product.name
